@@ -104,8 +104,8 @@ class OrderController extends Controller
 
         $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
-        $to = 9034222932;
-        $from = "Nalert";
+        $to = 8096176758;
+        $from = "CapitalVote";
         $sms = "There's a new order! please login to process it, test.";
         $channel = "generic";
         $media = false;
