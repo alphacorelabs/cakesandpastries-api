@@ -13,7 +13,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menu = Menu::with('category')->get();
+        $menu = Menu::with('category')->orderBy('created_at', 'asc')->get();
         return response()->json(['data' => $menu]);
     }
 
