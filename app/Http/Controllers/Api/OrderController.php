@@ -91,7 +91,7 @@ class OrderController extends Controller
     }
 
     //complete-order with payment referrence and update status to paid
-    public function completeOrder(Request $request){
+    public function complete(Request $request){
         $order = Order::where('payment_ref', $request->payment_ref)->first();
         if ($order) {
             $order->status = "paid";
