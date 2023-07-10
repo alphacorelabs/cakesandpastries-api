@@ -27,6 +27,7 @@ Route::namespace('Api')->group(function() {
     Route::get('menu/protein', 'MenuController@protein')->name('get-protein');
     Route::post('protein/add', 'MenuController@proteinAdd')->name('add-protein');
     Route::post('create-order', 'OrderController@create')->name('create-order');
+    Route::post('complete-order', 'OrderController@complete')->name('complete-order');
     Route::post('confirm_order', 'OrderController@confirm')->name('confirm');
     Route::delete('protein/delete/{id}', 'MenuController@proteinDelete')->name('delete-protein');
     Route::get('totalsales', 'MenuController@totalSales')->name('total-sales');

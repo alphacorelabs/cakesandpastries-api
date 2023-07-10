@@ -90,6 +90,20 @@ class OrderController extends Controller
         return response()->json(['data' => $order]);
     }
 
+    //complete-order with payment referrence and update status to paid
+    public function completeOrder(Request $request){
+        $order = Order::where('payment_ref', $request->payment_ref)->first();
+        if ($order) {
+            $order->status = "paid";
+            $order->save();
+            return response()->json(['success' => "Payment confirmed"]);
+        }
+        else{
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+
+    }
+
 
     public function confirm(Request $request){
 
