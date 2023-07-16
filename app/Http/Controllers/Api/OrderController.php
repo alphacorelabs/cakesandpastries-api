@@ -96,6 +96,9 @@ class OrderController extends Controller
         if ($order) {
             $order->status = "paid";
             $order->save();
+            // send notification of new order here
+
+
             return response()->json(['success' => "Payment confirmed"]);
         }
         else{
@@ -124,16 +127,17 @@ class OrderController extends Controller
         
        
         
-
+        return $request;
         // if it is a charge event, verify and confirm it is a successful transaction
         //chief don't forget to check if verfied is true in the next line
     if ( $request->event == 'charge.completed' && $request->data['status'] == 'successful') {
 
         $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
-        $to = 8096176758;
+        // $to = 8096176758;
+        $to = 9034222932;
         $from = "CapitalVote";
-        $sms = "There's a new order! please login to process it, test.";
+        $sms = "There's a new order! please login to process it.";
         $channel = "generic";
         $media = false;
         $media_url = null;
@@ -206,7 +210,7 @@ class OrderController extends Controller
 
 
 
-    $order = Order::where('payment_ref', $request->payment_ref)->first();
+    // $order = Order::where('payment_ref', $request->payment_ref)->first();
     
     // if ($order) {
     //     $order->status = "paid";
