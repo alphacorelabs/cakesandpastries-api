@@ -149,7 +149,7 @@ class MenuController extends Controller
         $fieldsToUpdate['isAvailable'] = $request->isAvailable;
     }
 
-    dd($fieldsToUpdate);
+    // dd($fieldsToUpdate);
 
     $menu->update($fieldsToUpdate);
 
