@@ -177,11 +177,7 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
-
-        $transfer = Flutterwave::transfers()->fetch($request->data['id']);
-        
-        $order = Order::where('payment_ref', $request->data['id'])->first();
-            $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
                 // $to = 8096176758;
                 $to = 9034222932;
@@ -193,7 +189,13 @@ class OrderController extends Controller
                 $media_caption = null;
                 
               $send = $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-              return $send; 
+              return $send;
+
+              
+        $transfer = Flutterwave::transfers()->fetch($request->data['id']);
+        
+        $order = Order::where('payment_ref', $request->data['id'])->first();
+             
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
