@@ -189,9 +189,9 @@ class OrderController extends Controller
                 $media_caption = null;
                 
               $send = $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-              return $send;
+              return "NA ME";
 
-              
+
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
         
         $order = Order::where('payment_ref', $request->data['id'])->first();
