@@ -127,7 +127,7 @@ class OrderController extends Controller
         
        
         
-        return $request;
+        
         // if it is a charge event, verify and confirm it is a successful transaction
         //chief don't forget to check if verfied is true in the next line
     if ( $request->event == 'charge.completed' && $request->data['status'] == 'successful') {
@@ -175,14 +175,14 @@ class OrderController extends Controller
     }
 
     // if it is a transfer event, verify and confirm it is a successful transfer
-    if ($verified && $request->event == 'transfer.completed') {
+    if ($request->event == 'transfer.completed') {
 
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
         
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
-
+            return $transfer;
             $order = Order::where('payment_ref', $request->data['id'])->first();
 
             if ($order) {
