@@ -178,21 +178,21 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
-        Termii::send('2349034222932', 'Hello World!');
-        return response()->json(['success' => "Payment already confirmed"], 200);
-        // $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+        // Termii::send('2349034222932', 'Hello World!');
+        // return response()->json(['success' => "Payment already confirmed"], 200);
+        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
-        //         $to = 8096176758;
-        //         $to = 2349034222932;
-        //         $from = "CapitalVote";
-        //         $sms = "There's a new order! please login to process it.";
-        //         $channel = "whatsapp";
-        //         $media = false;
-        //         $media_url = null;
-        //         $media_caption = null;
+                $to = 8096176758;
+                $to = 2349034222932;
+                $from = "CapitalVote";
+                $sms = "There's a new order! please login to process it.";
+                $channel = "dnd";
+                $media = false;
+                $media_url = null;
+                $media_caption = null;
                 
-        //         $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-        //        return $termii; 
+               return $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+              
         
 
               
