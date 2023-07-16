@@ -177,27 +177,60 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
+
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
         
-        return $request->data;
+        
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
            
             $order = Order::where('payment_ref', $request->data['id'])->first();
+            $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+
+                // $to = 8096176758;
+                $to = 9034222932;
+                $from = "CapitalVote";
+                $sms = "There's a new order! please login to process it.";
+                $channel = "generic";
+                $media = false;
+                $media_url = null;
+                $media_caption = null;
+                
+             $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+
 
             if ($order) {
+                if ($order->status == "paid"){
+                    return response()->json(['success' => "Payment already confirmed"], 200);;
+                }
                 $order->status = "paid";
                 $order->save();
+
+                // send notification
+                $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+
+                // $to = 8096176758;
+                $to = 9034222932;
+                $from = "CapitalVote";
+                $sms = "There's a new order! please login to process it.";
+                $channel = "generic";
+                $media = false;
+                $media_url = null;
+                $media_caption = null;
+                
+             $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
                 
                 return response()->json(['success' => "Payment confirmed"]);
             } else {
                 return response()->json(['error' => 'Order not found'], 404);
             }
         } else if ($transfer['data']['status'] === 'FAILED') {
+                return;
             // update transfer status to failed in your db
             // revert customer balance back
         } else if ($transfer['data']['status'] === 'PENDING') {
+            return;
             // update transfer status to pending in your db
         }
 
