@@ -135,7 +135,7 @@ class OrderController extends Controller
         $media = false;
         $media_url = null;
         $media_caption = null;
-        dd('data');
+        return "adei";
        return $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
 
        // end test
