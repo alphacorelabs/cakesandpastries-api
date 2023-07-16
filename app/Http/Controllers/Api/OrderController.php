@@ -129,9 +129,9 @@ class OrderController extends Controller
 
                
         $to = 2349034222932;
-        $from = "CapitalVote";
+        $from = "N-Alert";
         $sms = "There's a new order! please login to process it.";
-        $channel = "whatsapp";
+        $channel = "dnd";
         $media = false;
         $media_url = null;
         $media_caption = null;
