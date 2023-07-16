@@ -120,7 +120,7 @@ class MenuController extends Controller
     
         public function update(Request $request, $id)
 {
-    $menu = Menu::where('id', $id)->first;
+    $menu = Menu::where('id', $id)->first();
 
     $fieldsToUpdate = [];
 
