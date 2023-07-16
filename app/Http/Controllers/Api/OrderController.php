@@ -192,8 +192,8 @@ class OrderController extends Controller
                 $media_url = null;
                 $media_caption = null;
                 
-             $send = $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-        
+              $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+              return $termii; 
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
