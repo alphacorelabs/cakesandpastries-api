@@ -104,6 +104,19 @@ class OrderController extends Controller
 
     }
 
+    public function state(Request $request){
+        $order = Order::where('id', $request->id)->first();
+        if ($order) {
+            $order->state = "completed";
+            $order->save();
+            return response()->json(['success' => "Order Completed"]);
+        }
+        else{
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+
+    }
+
 
     public function confirm(Request $request){
 

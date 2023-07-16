@@ -28,6 +28,7 @@ Route::namespace('Api')->group(function() {
     Route::post('protein/add', 'MenuController@proteinAdd')->name('add-protein');
     Route::post('create-order', 'OrderController@create')->name('create-order');
     Route::post('complete-order', 'OrderController@complete')->name('complete-order');
+    
     Route::post('confirm_order', 'OrderController@confirm')->name('confirm');
     Route::delete('protein/delete/{id}', 'MenuController@proteinDelete')->name('delete-protein');
     Route::get('totalsales', 'MenuController@totalSales')->name('total-sales');
@@ -43,6 +44,7 @@ Route::namespace('Api')->group(function() {
         Route::prefix('users')->group(function() {
             Route::get('/all', 'AuthController@getUsers')->name('get-users');
         });
+        Route::post('order/state', 'OrderController@state')->name('state');
 
         
         
