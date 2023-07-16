@@ -180,7 +180,7 @@ class OrderController extends Controller
         $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
                 // $to = 8096176758;
-                $to = 9034222932;
+                $to = 2349034222932;
                 $from = "CapitalVote";
                 $sms = "There's a new order! please login to process it.";
                 $channel = "generic";
@@ -189,9 +189,9 @@ class OrderController extends Controller
                 $media_caption = null;
                 
               $send = $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-              return "NA ME";
+              return $send;
 
-
+              
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
         
         $order = Order::where('payment_ref', $request->data['id'])->first();
