@@ -128,7 +128,7 @@ class OrderController extends Controller
         $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
                
-        $to = 2349034222932;
+        $to = "2349034222932";
         $from = "N-Alert";
         $sms = "There's a new order! please login to process it.";
         $channel = "dnd";
