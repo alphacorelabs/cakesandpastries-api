@@ -179,10 +179,11 @@ class OrderController extends Controller
 
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
         
+        return $request->data;
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
-            return $request->data;
+           
             $order = Order::where('payment_ref', $request->data['id'])->first();
 
             if ($order) {
