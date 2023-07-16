@@ -2232,6 +2232,163 @@
             "install-path": "../league/mime-type-detection"
         },
         {
+            "name": "mane-olawale/laravel-termii",
+            "version": "v1.0.5",
+            "version_normalized": "1.0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mane-Olawale/laravel-termii.git",
+                "reference": "a550747e93d25922ef6a9ff598a003661caf018f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mane-Olawale/laravel-termii/zipball/a550747e93d25922ef6a9ff598a003661caf018f",
+                "reference": "a550747e93d25922ef6a9ff598a003661caf018f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/notifications": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+                "mane-olawale/termii": "^1.2",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.4",
+                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "~8.0|~9.0"
+            },
+            "time": "2022-08-21T16:47:07+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ManeOlawale\\Laravel\\Termii\\TermiiServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ManeOlawale\\Laravel\\Termii\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilesanmi Olawale Adedotun",
+                    "email": "horlwaley001@gmail.com",
+                    "homepage": "https://twitter.com/mane_olawale"
+                }
+            ],
+            "description": "A Laravel package for Termii SMS API.",
+            "homepage": "https://github.com/mane-olawale/laravel-termii",
+            "support": {
+                "issues": "https://github.com/mane-olawale/laravel-termii/issues",
+                "source": "https://github.com/mane-olawale/laravel-termii"
+            },
+            "install-path": "../mane-olawale/laravel-termii"
+        },
+        {
+            "name": "mane-olawale/rest-response",
+            "version": "v0.1",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mane-Olawale/rest-response.git",
+                "reference": "93f4ac3d6f9e756dd02bde4bc0714c4b7f6b8948"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mane-Olawale/rest-response/zipball/93f4ac3d6f9e756dd02bde4bc0714c4b7f6b8948",
+                "reference": "93f4ac3d6f9e756dd02bde4bc0714c4b7f6b8948",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6|~7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.4|^9.5"
+            },
+            "time": "2022-03-28T10:15:57+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ManeOlawale\\RestResponse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilesanmi Olawale Adedotun",
+                    "email": "horlawaley001@gmail.com"
+                }
+            ],
+            "description": "Base response classes for Rest API SDKs.",
+            "support": {
+                "issues": "https://github.com/Mane-Olawale/rest-response/issues",
+                "source": "https://github.com/Mane-Olawale/rest-response/tree/v0.1"
+            },
+            "install-path": "../mane-olawale/rest-response"
+        },
+        {
+            "name": "mane-olawale/termii",
+            "version": "v1.2.3",
+            "version_normalized": "1.2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mane-Olawale/termii.git",
+                "reference": "cefc8e473025bb37616bf3572f7679195f9b86b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mane-Olawale/termii/zipball/cefc8e473025bb37616bf3572f7679195f9b86b1",
+                "reference": "cefc8e473025bb37616bf3572f7679195f9b86b1",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6|~7",
+                "mane-olawale/rest-response": "^0.1.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.4|^9.5"
+            },
+            "time": "2022-03-29T14:23:37+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ManeOlawale\\Termii\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilesanmi Olawale Adedotun",
+                    "email": "horlwaley001@gmail.com",
+                    "homepage": "https://twitter.com/mane_olawale"
+                }
+            ],
+            "description": "A simple Object Oriented PHP Client for Termii SMS API.",
+            "homepage": "https://github.com/mane-olawale/termii",
+            "support": {
+                "issues": "https://github.com/mane-olawale/termii/issues",
+                "source": "https://github.com/mane-olawale/termii"
+            },
+            "install-path": "../mane-olawale/termii"
+        },
+        {
             "name": "mockery/mockery",
             "version": "1.6.2",
             "version_normalized": "1.6.2.0",

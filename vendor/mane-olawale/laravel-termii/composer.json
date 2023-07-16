@@ -1,0 +1,49 @@
+{
+    "name": "mane-olawale/laravel-termii",
+    "description": "A Laravel package for Termii SMS API.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/mane-olawale/laravel-termii",
+    "support": {
+        "issues": "https://github.com/mane-olawale/laravel-termii/issues",
+        "source": "https://github.com/mane-olawale/laravel-termii"
+    },
+    "authors": [
+        {
+            "name": "Ilesanmi Olawale Adedotun",
+            "homepage": "https://twitter.com/mane_olawale",
+            "email": "horlwaley001@gmail.com"
+        }
+    ],
+	"require": {
+		"php": "^7.2|^8.0",
+        "mane-olawale/termii": "^1.2",
+        "illuminate/notifications": "^6.0|^7.0|^8.0|^9.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0"
+	},
+    "require-dev": {
+        "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
+        "phpunit/phpunit": "~8.0|~9.0",
+        "mockery/mockery": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ManeOlawale\\Laravel\\Termii\\": "src/"
+        }
+    },
+    "autoload-dev": {
+         "psr-4": {
+             "ManeOlawale\\Laravel\\Termii\\Tests\\": "tests/"
+         }
+     },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --verbose"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ManeOlawale\\Laravel\\Termii\\TermiiServiceProvider"
+            ]
+        }
+    }
+}

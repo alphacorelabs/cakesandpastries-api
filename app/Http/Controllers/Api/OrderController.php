@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 use BJTheCod3r\SmartSms\SmartSms;
+use ManeOlawale\Laravel\Termii\Facades\Termii;
 
 
 
@@ -177,19 +178,21 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
-        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+        Termii::send('2349034222932', 'Hello World!', 'CapitalVote', 'dnd');
+        return response()->json(['success' => "Payment already confirmed"], 200);;
+        // $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
-                // $to = 8096176758;
-                $to = 2349034222932;
-                $from = "CapitalVote";
-                $sms = "There's a new order! please login to process it.";
-                $channel = "whatsapp";
-                $media = false;
-                $media_url = null;
-                $media_caption = null;
+        //         $to = 8096176758;
+        //         $to = 2349034222932;
+        //         $from = "CapitalVote";
+        //         $sms = "There's a new order! please login to process it.";
+        //         $channel = "whatsapp";
+        //         $media = false;
+        //         $media_url = null;
+        //         $media_caption = null;
                 
-                $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-               return $termii; 
+        //         $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+        //        return $termii; 
         
 
               
@@ -206,7 +209,7 @@ class OrderController extends Controller
 
             if ($order) {
                 if ($order->status == "paid"){
-                    return response()->json(['success' => "Payment already confirmed"], 200);;
+                    return response()->json(['success' => "Payment already confirmed"], 200);
                 }
                 $order->status = "paid";
                 $order->save();

@@ -17,6 +17,7 @@
         "kingflamez/laravelrave": "^4.2",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
+        "mane-olawale/laravel-termii": "^1.0",
         "tymon/jwt-auth": "^1.0",
         "zeevx/lara-termii": "dev-master"
     },

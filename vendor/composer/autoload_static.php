@@ -8,19 +8,20 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -29,7 +30,6 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
@@ -115,6 +115,9 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
         array (
             'Monolog\\' => 8,
             'Mockery\\' => 8,
+            'ManeOlawale\\Termii\\' => 19,
+            'ManeOlawale\\RestResponse\\' => 25,
+            'ManeOlawale\\Laravel\\Termii\\' => 27,
         ),
         'L' => 
         array (
@@ -369,6 +372,18 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
         'Mockery\\' => 
         array (
             0 => __DIR__ . '/..' . '/mockery/mockery/library/Mockery',
+        ),
+        'ManeOlawale\\Termii\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mane-olawale/termii/src',
+        ),
+        'ManeOlawale\\RestResponse\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mane-olawale/rest-response/src',
+        ),
+        'ManeOlawale\\Laravel\\Termii\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -2795,6 +2810,39 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+        'ManeOlawale\\Laravel\\Termii\\Channels\\TermiiSmsChannel' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Channels/TermiiSmsChannel.php',
+        'ManeOlawale\\Laravel\\Termii\\Commands\\InstallCommand' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Commands/InstallCommand.php',
+        'ManeOlawale\\Laravel\\Termii\\Entities\\Token' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Entities/Token.php',
+        'ManeOlawale\\Laravel\\Termii\\Facades\\Termii' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Facades/Termii.php',
+        'ManeOlawale\\Laravel\\Termii\\HttpManager' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/HttpManager.php',
+        'ManeOlawale\\Laravel\\Termii\\Messages\\BaseMessage' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Messages/BaseMessage.php',
+        'ManeOlawale\\Laravel\\Termii\\Messages\\Message' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Messages/Message.php',
+        'ManeOlawale\\Laravel\\Termii\\Termii' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Termii.php',
+        'ManeOlawale\\Laravel\\Termii\\TermiiServiceProvider' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/TermiiServiceProvider.php',
+        'ManeOlawale\\Laravel\\Termii\\Testing\\AssertTrait' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Testing/AssertTrait.php',
+        'ManeOlawale\\Laravel\\Termii\\Testing\\FakeHttpManager' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Testing/FakeHttpManager.php',
+        'ManeOlawale\\Laravel\\Termii\\Testing\\Sequence' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Testing/Sequence.php',
+        'ManeOlawale\\Laravel\\Termii\\Testing\\TermiiFake' => __DIR__ . '/..' . '/mane-olawale/laravel-termii/src/Testing/TermiiFake.php',
+        'ManeOlawale\\RestResponse\\AbstractListResponse' => __DIR__ . '/..' . '/mane-olawale/rest-response/src/AbstractListResponse.php',
+        'ManeOlawale\\RestResponse\\AbstractResponse' => __DIR__ . '/..' . '/mane-olawale/rest-response/src/AbstractResponse.php',
+        'ManeOlawale\\Termii\\Api\\AbstractApi' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/AbstractApi.php',
+        'ManeOlawale\\Termii\\Api\\Insights' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Insights.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Insights\\InboxResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Insights/InboxResponse.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Insights\\SearchResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Insights/SearchResponse.php',
+        'ManeOlawale\\Termii\\Api\\Response\\ListResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/ListResponse.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Response' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Response.php',
+        'ManeOlawale\\Termii\\Api\\Response\\ResponseTrait' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/ResponseTrait.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Sender\\ListResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Sender/ListResponse.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Sms\\SendResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Sms/SendResponse.php',
+        'ManeOlawale\\Termii\\Api\\Response\\Token\\VerifyResponse' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Response/Token/VerifyResponse.php',
+        'ManeOlawale\\Termii\\Api\\Sender' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Sender.php',
+        'ManeOlawale\\Termii\\Api\\Sms' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Sms.php',
+        'ManeOlawale\\Termii\\Api\\Token' => __DIR__ . '/..' . '/mane-olawale/termii/src/Api/Token.php',
+        'ManeOlawale\\Termii\\Client' => __DIR__ . '/..' . '/mane-olawale/termii/src/Client.php',
+        'ManeOlawale\\Termii\\HttpClient\\GuzzleHttpManager' => __DIR__ . '/..' . '/mane-olawale/termii/src/HttpClient/GuzzleHttpManager.php',
+        'ManeOlawale\\Termii\\HttpClient\\HttpClientInterface' => __DIR__ . '/..' . '/mane-olawale/termii/src/HttpClient/HttpClientInterface.php',
+        'ManeOlawale\\Termii\\HttpClient\\HttpManagerInterface' => __DIR__ . '/..' . '/mane-olawale/termii/src/HttpClient/HttpManagerInterface.php',
+        'ManeOlawale\\Termii\\HttpClient\\SendHttpRequests' => __DIR__ . '/..' . '/mane-olawale/termii/src/HttpClient/SendHttpRequests.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
