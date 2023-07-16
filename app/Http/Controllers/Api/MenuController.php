@@ -137,6 +137,9 @@ class MenuController extends Controller
     if (!is_null($request->price)) {
         $fieldsToUpdate['price'] = $request->price;
     }
+    if (!is_null($request->measure)) {
+        $fieldsToUpdate['measure'] = $request->measure;
+    }
 
     if (!is_null($request->image)) {
         $fieldsToUpdate['image'] = $request->image;
