@@ -182,7 +182,7 @@ class OrderController extends Controller
 
         if($transfer['data']['status'] === 'SUCCESSFUL') {
             // update transfer status to successful in your db
-            return $request->data['id'];
+            return $request->data;
             $order = Order::where('payment_ref', $request->data['id'])->first();
 
             if ($order) {
