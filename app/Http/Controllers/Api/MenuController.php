@@ -122,6 +122,8 @@ class MenuController extends Controller
 {
     $menu = Menu::where('id', $id)->first();
 
+   
+
     $fieldsToUpdate = [];
 
     if (!is_null($request->category_id)) {
@@ -143,6 +145,8 @@ class MenuController extends Controller
     if (!is_null($request->isAvailable)) {
         $fieldsToUpdate['isAvailable'] = $request->isAvailable;
     }
+
+    dd($fieldsToUpdate);
 
     $menu->update($fieldsToUpdate);
 
