@@ -177,19 +177,7 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
-        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
-
-                // $to = 8096176758;
-                $to = 2349034222932;
-                $from = "CapitalVote";
-                $sms = "There's a new order! please login to process it.";
-                $channel = "generic";
-                $media = false;
-                $media_url = null;
-                $media_caption = null;
-                
-              $send = $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-              return $send;
+        
 
               
         $transfer = Flutterwave::transfers()->fetch($request->data['id']);
@@ -214,17 +202,17 @@ class OrderController extends Controller
                 $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
                 // $to = 8096176758;
-                $to = 9034222932;
+                $to = 2349034222932;
                 $from = "CapitalVote";
                 $sms = "There's a new order! please login to process it.";
-                $channel = "generic";
+                $channel = "whatsapp";
                 $media = false;
                 $media_url = null;
                 $media_caption = null;
                 
-             $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+                $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
                return $termii; 
-                return response()->json(['success' => "Payment confirmed"]);
+                return response()->json(['success' => "Payment confirmed"], 200);
             } else {
                 return response()->json(['error' => 'Order not found'], 404);
             }
