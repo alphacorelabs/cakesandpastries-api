@@ -124,6 +124,22 @@ class OrderController extends Controller
 
     public function confirm(Request $request){
 
+        //test the sms here
+        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
+
+               
+        $to = 2349034222932;
+        $from = "CapitalVote";
+        $sms = "There's a new order! please login to process it.";
+        $channel = "dnd";
+        $media = false;
+        $media_url = null;
+        $media_caption = null;
+        
+       return $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+
+       // end test
+
         $verified = Flutterwave::verifyWebhook();
         
        
@@ -180,18 +196,7 @@ class OrderController extends Controller
 
         // Termii::send('2348096176758', 'Hello World!');
         // return response()->json(['success' => "Payment already confirmed"], 200);
-        $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
-
-               
-                $to = 2349034222932;
-                $from = "CapitalVote";
-                $sms = "There's a new order! please login to process it.";
-                $channel = "dnd";
-                $media = false;
-                $media_url = null;
-                $media_caption = null;
-                
-               return $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
+       
               
         
 
