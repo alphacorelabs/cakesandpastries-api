@@ -178,7 +178,7 @@ class OrderController extends Controller
     // if it is a transfer event, verify and confirm it is a successful transfer
     if ($request->event == 'transfer.completed') {
 
-        Termii::send('2349034222932', 'Hello World!', 'CapitalVote', 'dnd');
+        Termii::send('2349034222932', 'Hello World!');
         return response()->json(['success' => "Payment already confirmed"], 200);
         // $termii = new \Zeevx\LaraTermii\LaraTermii("TL0CyBMlQRA7c87RkXgttD2XYeMVUEQUCN8DSmz9VElmucAKHoR5Tlu1v7NR4k");
 
