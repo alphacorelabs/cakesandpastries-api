@@ -99,14 +99,14 @@ class MenuController extends Controller
     
      //function to get total orders count where status is delivered
     public function proccessedOrders(){
-        $processedOrders = Order::where('status', 'delivered')->count();
+        $processedOrders = Order::where('state', 'completed')->count();
         return response()->json(['data' => $processedOrders]);
     }
 
 
     //function to get total sales in order table where status is delivered
     public function totalSales(){
-        $totalSales = Order::where('status', 'delivered')->sum('amount');
+        $totalSales = Order::where('status', 'paid')->sum('amount');
         return response()->json(['data' => $totalSales]);
     }
 
@@ -120,7 +120,7 @@ class MenuController extends Controller
     
         public function update(Request $request, $id)
 {
-    $menu = Menu::find($id);
+    $menu = Menu::where('id', $id)->first;
 
     $fieldsToUpdate = [];
 
