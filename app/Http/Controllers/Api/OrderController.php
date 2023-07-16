@@ -221,7 +221,7 @@ class OrderController extends Controller
                 $media_caption = null;
                 
              $termii->sendMessage($to, $from, $sms, $channel, $media, $media_url, $media_caption);
-                
+               return $termii; 
                 return response()->json(['success' => "Payment confirmed"]);
             } else {
                 return response()->json(['error' => 'Order not found'], 404);
