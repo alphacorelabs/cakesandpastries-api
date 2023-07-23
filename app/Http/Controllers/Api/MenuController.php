@@ -14,7 +14,7 @@ class MenuController extends Controller
     public function index()
     {
         $menu = Menu::with('category')
-                    ->where('available')
+                    ->where('isAvailable', 1)
                     ->orderBy('created_at', 'asc')
                     ->get();
     
