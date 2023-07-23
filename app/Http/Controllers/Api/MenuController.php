@@ -13,9 +13,14 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menu = Menu::with('category')->orderBy('created_at', 'asc')->get();
+        $menu = Menu::with('category')
+                    ->where('available', 1)
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+    
         return response()->json(['data' => $menu]);
     }
+    
 
     public function protein()
     {
