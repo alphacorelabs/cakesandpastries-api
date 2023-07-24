@@ -24,6 +24,7 @@ Route::namespace('Api')->group(function() {
     Route::get('categories/all', 'CategoriesController@index')->name('get-categories');
     Route::get('locations/all', 'LocationController@index')->name('get-locations');
     Route::get('menu/all', 'MenuController@index')->name('get-menu');
+    Route::get('menu/admin/all', 'MenuController@indexAdmin')->name('get-menu-admin');
     Route::get('menu/protein', 'MenuController@protein')->name('get-protein');
     Route::post('protein/add', 'MenuController@proteinAdd')->name('add-protein');
     Route::post('create-order', 'OrderController@create')->name('create-order');

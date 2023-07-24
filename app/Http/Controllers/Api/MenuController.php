@@ -20,6 +20,14 @@ class MenuController extends Controller
     
         return response()->json(['data' => $menu]);
     }
+    public function indexAdmin()
+    {
+        $menu = Menu::with('category')
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+    
+        return response()->json(['data' => $menu]);
+    }
     
 
     public function protein()
