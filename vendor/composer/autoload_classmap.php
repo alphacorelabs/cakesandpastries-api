@@ -30,6 +30,8 @@ return array(
     'App\\Location' => $baseDir . '/app/Location.php',
     'App\\Menu' => $baseDir . '/app/Menu.php',
     'App\\Order' => $baseDir . '/app/Order.php',
+    'App\\OrderItem' => $baseDir . '/app/OrderItem.php',
+    'App\\OrderItemProtein' => $baseDir . '/app/OrderItemProtein.php',
     'App\\Protein' => $baseDir . '/app/Protein.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

@@ -526,6 +526,8 @@ class ComposerStaticInitb71e9dea064c6cdfa62f8ab4ba909fe9
         'App\\Location' => __DIR__ . '/../..' . '/app/Location.php',
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
+        'App\\OrderItem' => __DIR__ . '/../..' . '/app/OrderItem.php',
+        'App\\OrderItemProtein' => __DIR__ . '/../..' . '/app/OrderItemProtein.php',
         'App\\Protein' => __DIR__ . '/../..' . '/app/Protein.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

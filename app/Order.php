@@ -14,4 +14,18 @@ class Order extends Model
     public function users() {
         return $this->belongsTo(User::class);
     }
+
+
+   // Define the relationship with OrderItem
+   public function items()
+   {
+       return $this->hasMany(OrderItem::class);
+   }
+
+    public function proteins()
+    {
+         return $this->hasMany(OrderItemProtein::class);
+    }
+
+    
 }
