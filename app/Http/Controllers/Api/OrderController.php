@@ -32,7 +32,7 @@ class OrderController extends Controller
 
 
 
-
+    // create order
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -40,7 +40,7 @@ class OrderController extends Controller
             'deliveryMethod' => 'required',
             'totalAmount' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json($validator->messages(), 400);
         }
@@ -59,7 +59,7 @@ class OrderController extends Controller
             'currency' => 'NGN',
             'redirect_url' => 'https://cakesandpastries.ng/',
             'payment_options' => 'card,banktransfer',
-            
+
             'customer' => [
                 'email' => $request->input('email'),
                 'phonenumber' => $request->input('phoneNumber')
@@ -71,7 +71,7 @@ class OrderController extends Controller
         ];
 
         $payment = Flutterwave::initializePayment($data);
-    
+
         // Prepare order details deploy
         $order = new Order();
         $order->payment_ref = $reference;
@@ -81,7 +81,7 @@ class OrderController extends Controller
         $order->location = $request->input('location.name');
         $order->phone = $request->input('phoneNumber');
         $order->save();
-    
+
         // Save order items
         foreach ($request->input('items') as $item) {
             $orderItem = new OrderItem();
@@ -90,7 +90,7 @@ class OrderController extends Controller
             $orderItem->quantity = $item['quantity'];
             $orderItem->price = $item['price'];
             $orderItem->save();
-    
+
             // Save order item proteins
             if (isset($item['protein'])) {
                 foreach ($item['protein'] as $protein) {
@@ -103,7 +103,7 @@ class OrderController extends Controller
                 }
             }
         }
-    
+
         return response()->json([
             'status' => true,
             'message' => 'Checkout started successfully',
@@ -111,6 +111,73 @@ class OrderController extends Controller
         ]);
     }
 
+    //webhook
+    public function webhook(Request $request)
+    {
+        try {
+
+            //This verifies the webhook is sent from Flutterwave
+            $verified = Flutterwave::verifyWebhook();
+
+
+            // if it is a charge event, verify and confirm it is a successful transaction
+            if ($verified && $request->event == 'charge.completed' && $request->data->status == 'successful') {
+                $verificationData = Flutterwave::verifyPayment($request->data['id']);
+                if ($verificationData['status'] === 'success') {
+                    // process for successful charge
+
+                }
+            }
+
+
+            // if it is a transfer event, verify and confirm it is a successful transfer
+            if ($verified && $request->event == 'transfer.completed') {
+
+                $transfer = Flutterwave::transfers()->fetch($request->data['id']);
+
+                if ($transfer['data']['status'] === 'SUCCESSFUL') {
+                    // update transfer status to successful in your db
+                    //log data
+                    // log::info('successful transfer', $transfer);
+                } else if ($transfer['data']['status'] === 'FAILED') {
+                    // update transfer status to failed in your db
+                    // revert customer balance back
+                } else if ($transfer['data']['status'] === 'PENDING') {
+                    // update transfer status to pending in your db
+                }
+            }
+
+
+
+          // get the order
+          $order = Order::where('payment_ref', $request->tx_ref)->first();
+
+            if (!$order) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'order not found'
+                ], 404);
+            }
+
+            if (['status'] == 'successful') {
+                $order->update([
+                    'amount' => $request->data['amount'],
+                    'status' => 'paid'
+                ]);
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Webhook received successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Webhook failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 
 
 
@@ -122,6 +189,8 @@ class OrderController extends Controller
         $order = Order::find($id);
         return response()->json(['data' => $order]);
     }
+
+
 
     //complete-order with payment referrence and update status to paid
     public function complete(Request $request)

@@ -25,7 +25,7 @@ return [
     /**
      * Sim Server Token
      */
-    'simserver_token' => getenv('SMARTSMS_SIMSERVER_TOKEN', null),
+    'simserver_token' => getenv('SMARTSMS_SIMSERVER_TOKEN'),
 
     /**
      * Type of sms
