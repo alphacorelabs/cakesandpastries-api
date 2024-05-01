@@ -57,7 +57,7 @@ class OrderController extends Controller
             'tx_ref' => $reference,
             'amount' => $request->input('totalAmount'),
             'currency' => 'NGN',
-            'redirect_url' => 'https://cakesandpastries.ng/',
+            'redirect_url' => 'https://www.cakesandpastries.ng',
             'payment_options' => 'card,banktransfer',
 
             'customer' => [
