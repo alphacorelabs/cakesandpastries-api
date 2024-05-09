@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Menu;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderItem;
 use App\OrderItemProtein;
+use App\Protein;
 use Illuminate\Support\Facades\Validator;
 
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
@@ -186,8 +188,47 @@ class OrderController extends Controller
 
     public function order($id)
     {
-        $order = Order::find($id);
-        return response()->json(['data' => $order]);
+        try {
+            $order = Order::find($id);
+            if (!$order) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Order not found'
+                ], 404);
+            }
+
+            //add order items
+            $order->items = OrderItem::where('order_id', $order->id)->get();
+
+            //add item menu
+            foreach ($order->items as $item) {
+                $item->menu = Menu::find($item->menu_id);
+            }
+
+            //add order item proteins
+            foreach ($order->items as $item) {
+                $item->proteins = OrderItemProtein::where('order_item_id', $item->id)->get();
+            }
+
+            //add protein details
+            foreach ($order->items as $item) {
+                foreach ($item->proteins as $protein) {
+                    $protein->details = Protein::find($protein->protein_id);
+                }
+            }
+
+            return response()->json([
+                'status' => true,
+                'data' => $order
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+       
     }
 
 
