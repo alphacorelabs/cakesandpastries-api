@@ -119,9 +119,7 @@ class OrderController extends Controller
     {
         try {
 
-            $order = Order::where('payment_ref', 'flw_171458521166327e7b44618')->first();
-            $order->name = $request->all();
-            $order->save();
+
 
             //This verifies the webhook is sent from Flutterwave
             $verified = Flutterwave::verifyWebhook();
@@ -133,6 +131,22 @@ class OrderController extends Controller
                 if ($verificationData['status'] === 'success') {
                     // process for successful charge
 
+                    // get the order
+                    $order = Order::where('payment_ref', $request->data->tx_ref)->first();
+
+                    if (!$order) {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'order not found'
+                        ], 404);
+                    }
+
+                    if (['status'] == 'successful') {
+                        $order->update([
+                            'amount' => $request->data['amount'],
+                            'status' => 'paid'
+                        ]);
+                    }
                 }
             }
 
@@ -144,6 +158,23 @@ class OrderController extends Controller
 
                 if ($transfer['data']['status'] === 'SUCCESSFUL') {
                     // update transfer status to successful in your db
+                    // get the order
+                    $order = Order::where('payment_ref', $request->data->tx_ref)->first();
+
+                    if (!$order) {
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'order not found'
+                        ], 404);
+                    }
+
+                    if (['status'] == 'successful') {
+                        $order->update([
+                            'amount' => $request->data['amount'],
+                            'status' => 'paid'
+                        ]);
+                    }
+
                     //log data
                     // log::info('successful transfer', $transfer);
                 } else if ($transfer['data']['status'] === 'FAILED') {
@@ -156,22 +187,7 @@ class OrderController extends Controller
 
 
 
-          // get the order
-          $order = Order::where('payment_ref', $request->tx_ref)->first();
 
-            if (!$order) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'order not found'
-                ], 404);
-            }
-
-            if (['status'] == 'successful') {
-                $order->update([
-                    'amount' => $request->data['amount'],
-                    'status' => 'paid'
-                ]);
-            }
 
             return response()->json([
                 'status' => true,
@@ -233,7 +249,6 @@ class OrderController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
-       
     }
 
 
