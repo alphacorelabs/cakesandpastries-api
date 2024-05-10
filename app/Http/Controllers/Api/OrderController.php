@@ -121,20 +121,16 @@ class OrderController extends Controller
             // This verifies the webhook is sent from Flutterwave
             $verified = Flutterwave::verifyWebhook();
 
-            $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
+        
 
             
     
             // Check if it is a charge event and verify it's a successful transaction
             if ($verified && $request->input('event') == 'charge.completed' && $request->input('data.status') == 'successful') {
                 //correct up to this point
-               
-                
-               
+     
 
-                    $order->update([
-                        'status' => 'verified2'
-                    ]);
+    
                     // Process for successful charge
                     $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
     
