@@ -28,7 +28,7 @@ Route::namespace('Api')->group(function() {
     Route::get('menu/protein', 'MenuController@protein')->name('get-protein');
     Route::post('protein/add', 'MenuController@proteinAdd')->name('add-protein');
     Route::post('create-order', 'OrderController@create')->name('create-order');
-    Route::post('webhook', 'OrderController@create')->name('webhook');
+    Route::post('webhook', 'OrderController@webhook')->name('webhook');
 
     Route::post('complete-order', 'OrderController@complete')->name('complete-order');
     Route::post('order/state', 'OrderController@state')->name('state');
