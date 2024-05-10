@@ -141,12 +141,12 @@ class OrderController extends Controller
                         ], 404);
                     }
 
-                    if (['status'] == 'successful') {
-                        $order->update([
-                            'amount' => $request->data['amount'],
-                            'status' => 'paid'
-                        ]);
-                    }
+                    
+                    $order->update([
+                        'amount' => $request->data['amount'],
+                        'status' => 'paid'
+                    ]);
+                        
                 }
             }
 
@@ -168,12 +168,10 @@ class OrderController extends Controller
                         ], 404);
                     }
 
-                    if (['status'] == 'successful') {
-                        $order->update([
-                            'amount' => $request->data['amount'],
-                            'status' => 'paid'
-                        ]);
-                    }
+                    $order->update([
+                        'amount' => $request->data['amount'],
+                        'status' => 'paid'
+                    ]);
 
                     //log data
                     // log::info('successful transfer', $transfer);
