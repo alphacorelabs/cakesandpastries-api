@@ -123,6 +123,17 @@ class MenuController extends Controller
         return response()->json(['data' => $totalSales]);
     }
 
+    //function to get today sales in order table where status is delivered
+    public function todaySales()
+    {
+        $today = date('Y-m-d');
+        $todaySales = Order::where('status', 'paid')
+                           ->whereDate('created_at', $today)
+                           ->sum('amount');
+        
+        return response()->json(['data' => $todaySales]);
+    }
+
     //function to get pending orders count
     public function pendingOrders(){
         $pendingOrders = Order::where('status', 'pending')->count();

@@ -35,6 +35,7 @@ Route::namespace('Api')->group(function() {
     Route::post('confirm_order', 'OrderController@confirm')->name('confirm');
     Route::delete('protein/delete/{id}', 'MenuController@proteinDelete')->name('delete-protein');
     Route::get('totalsales', 'MenuController@totalSales')->name('total-sales');
+    Route::get('todaysales', 'MenuController@todaySales')->name('today-sales');
     Route::get('pendingorders', 'MenuController@pendingOrders')->name('pending-orders');
     Route::get('proccessed', 'MenuController@proccessedOrders')->name('proccessed-orders');
 
