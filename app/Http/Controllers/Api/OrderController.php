@@ -113,56 +113,58 @@ class OrderController extends Controller
             'payment' => $payment
         ]);
     }
-
+   
     //webhook
     public function webhook(Request $request)
     {
         try {
+            // This verifies the webhook is sent from Flutterwave
             $verified = Flutterwave::verifyWebhook();
 
-            // Parse the request payload as an object
-            $payload = json_decode($request->getContent());
-
-            $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
+            $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
 
             
 
             $order->update([
-                'name' => $payload
+                'name' => $request->all()
             ]);
-
-            if ($verified && $payload->event === 'charge.completed' && $payload->data->status === 'successful') {
-                $verificationData = Flutterwave::verifyPayment($payload->data->id);
+    
+            // Check if it is a charge event and verify it's a successful transaction
+            if ($verified && $request->input('event') == 'charge.completed' && $request->input('data.status') == 'successful') {
+                $verificationData = Flutterwave::verifyPayment($request->input('data.id'));
                 if ($verificationData['status'] === 'success') {
-                     // process for successful charge
-
-                    $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
-
+                    // Process for successful charge
+                    $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
+    
                     if (!$order) {
-                        return response()->json(['status' => false, 'message' => 'Order not found'], 404);
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Order not found'
+                        ], 404);
                     }
-
+    
                     $order->update([
-                        'status' => 'paid',
-                        'amount' => $payload->data->amount
+                        'status' => 'paid'
                     ]);
                 }
             }
-
-
-             // if it is a transfer event, verify and confirm it is a successful transfer
-            if ($verified && $payload->event === 'transfer.completed') {
-                $transfer = Flutterwave::transfers()->fetch($payload->data->id);
-
+    
+            // Check if it is a transfer event and confirm it is a successful transfer
+            if ($verified && $request->input('event') == 'transfer.completed') {
+                $transfer = Flutterwave::transfers()->fetch($request->input('data.id'));
+    
                 if ($transfer['data']['status'] === 'SUCCESSFUL') {
-                    $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
-
+                    $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
+    
                     if (!$order) {
-                        return response()->json(['status' => false, 'message' => 'Order not found'], 404);
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Order not found'
+                        ], 404);
                     }
-
+    
                     $order->update([
-                        'amount' => $payload->data->amount,
+                        'amount' => $request->input('data.amount'),
                         'status' => 'paid'
                     ]);
                 } else if ($transfer['data']['status'] === 'FAILED') {
@@ -171,12 +173,20 @@ class OrderController extends Controller
                     // Handle pending transfer scenario
                 }
             }
-
-            return response()->json(['status' => true, 'message' => 'Webhook received successfully'], 200);
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Webhook received successfully'
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => false, 'message' => 'Webhook failed', 'error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => false,
+                'message' => 'Webhook failed',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
+    
 
 
 
