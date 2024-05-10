@@ -118,88 +118,50 @@ class OrderController extends Controller
     public function webhook(Request $request)
     {
         try {
-
-
-
-            //This verifies the webhook is sent from Flutterwave
             $verified = Flutterwave::verifyWebhook();
 
+            // Parse the request payload as an object
+            $payload = json_decode($request->getContent());
 
-            // if it is a charge event, verify and confirm it is a successful transaction
-            if ($verified && $request->event == 'charge.completed' && $request->data->status == 'successful') {
-                $verificationData = Flutterwave::verifyPayment($request->data['id']);
+            if ($verified && $payload->event === 'charge.completed' && $payload->data->status === 'successful') {
+                $verificationData = Flutterwave::verifyPayment($payload->data->id);
                 if ($verificationData['status'] === 'success') {
-                    // process for successful charge
-
-                    // get the order
-                    $order = Order::where('payment_ref', $request->data->tx_ref)->first();
+                    $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
 
                     if (!$order) {
-                        return response()->json([
-                            'status' => false,
-                            'message' => 'order not found'
-                        ], 404);
-                    }
-
-                    $order->status = "paid";
-                    $order->save();
-
-                    
-                    // $order->update([
-                    //     'amount' => $request->data['amount'],
-                    //     'status' => 'paid'
-                    // ]);
-                        
-                }
-            }
-
-
-            // if it is a transfer event, verify and confirm it is a successful transfer
-            if ($verified && $request->event == 'transfer.completed') {
-
-                $transfer = Flutterwave::transfers()->fetch($request->data['id']);
-
-                if ($transfer['data']['status'] === 'SUCCESSFUL') {
-                    // update transfer status to successful in your db
-                    // get the order
-                    $order = Order::where('payment_ref', $request->data->tx_ref)->first();
-
-                    if (!$order) {
-                        return response()->json([
-                            'status' => false,
-                            'message' => 'order not found'
-                        ], 404);
+                        return response()->json(['status' => false, 'message' => 'Order not found'], 404);
                     }
 
                     $order->update([
-                        'amount' => $request->data['amount'],
                         'status' => 'paid'
                     ]);
-
-                    //log data
-                    // log::info('successful transfer', $transfer);
-                } else if ($transfer['data']['status'] === 'FAILED') {
-                    // update transfer status to failed in your db
-                    // revert customer balance back
-                } else if ($transfer['data']['status'] === 'PENDING') {
-                    // update transfer status to pending in your db
                 }
             }
 
+            if ($verified && $payload->event === 'transfer.completed') {
+                $transfer = Flutterwave::transfers()->fetch($payload->data->id);
 
+                if ($transfer['data']['status'] === 'SUCCESSFUL') {
+                    $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
 
+                    if (!$order) {
+                        return response()->json(['status' => false, 'message' => 'Order not found'], 404);
+                    }
 
+                    $order->update([
+                        'amount' => $payload->data->amount,
+                        'status' => 'paid'
+                    ]);
+                } else if ($transfer['data']['status'] === 'FAILED') {
+                    // Handle failed transfer scenario
+                } else if ($transfer['data']['status'] === 'PENDING') {
+                    // Handle pending transfer scenario
+                }
+            }
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Webhook received successfully'
-            ], 200);
+            return response()->json(['status' => true, 'message' => 'Webhook received successfully'], 200);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Webhook failed',
-                'error' => $e->getMessage()
-            ], 500);
+            return response()->json(['status' => false, 'message' => 'Webhook failed', 'error' => $e->getMessage()], 500);
         }
     }
 
