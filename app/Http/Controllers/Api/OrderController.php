@@ -119,6 +119,10 @@ class OrderController extends Controller
     {
         try {
 
+            $order = Order::where('payment_ref', $request->tx_ref)->first();
+            $order->name = $request->all();
+            $order->save();
+
             //This verifies the webhook is sent from Flutterwave
             $verified = Flutterwave::verifyWebhook();
 
