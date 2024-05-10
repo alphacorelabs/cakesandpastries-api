@@ -130,6 +130,13 @@ class OrderController extends Controller
                 ]);
 
             }
+            if ($verified) {
+                
+                $order->update([
+                    'status' => 'verified'
+                ]);
+
+            }
     
             // Check if it is a charge event and verify it's a successful transaction
             if ($verified && $request->input('event') == 'charge.completed' && $request->input('data.status') == 'successful') {
