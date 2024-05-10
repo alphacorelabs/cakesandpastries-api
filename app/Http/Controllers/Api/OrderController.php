@@ -123,25 +123,19 @@ class OrderController extends Controller
 
             $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
 
-            if (!$verified) {
-                
-                $order->update([
-                    'status' => 'failed'
-                ]);
-
-            }
-            if ($verified) {
-                
-                $order->update([
-                    'status' => 'verified'
-                ]);
-
-            }
+            
     
             // Check if it is a charge event and verify it's a successful transaction
             if ($verified && $request->input('event') == 'charge.completed' && $request->input('data.status') == 'successful') {
+                $order->update([
+                    'status' => 'verified 1'
+                ]);
                 $verificationData = Flutterwave::verifyPayment($request->input('data.id'));
                 if ($verificationData['status'] === 'success') {
+
+                    $order->update([
+                        'status' => 'verified2'
+                    ]);
                     // Process for successful charge
                     $order = Order::where('payment_ref', $request->input('data.tx_ref'))->first();
     
