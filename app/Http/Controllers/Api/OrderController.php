@@ -83,6 +83,7 @@ class OrderController extends Controller
         $order->location = $request->input('location.name');
         $order->phone = $request->input('phoneNumber');
         $order->email = $request->input('email');
+        $order->type = $request->input('deliveryMethod');
         $order->save();
 
         // Save order items
