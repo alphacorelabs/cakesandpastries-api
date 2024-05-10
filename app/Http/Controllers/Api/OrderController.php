@@ -123,9 +123,13 @@ class OrderController extends Controller
             // Parse the request payload as an object
             $payload = json_decode($request->getContent());
 
+            
+
             if ($verified && $payload->event === 'charge.completed' && $payload->data->status === 'successful') {
                 $verificationData = Flutterwave::verifyPayment($payload->data->id);
                 if ($verificationData['status'] === 'success') {
+                     // process for successful charge
+
                     $order = Order::where('payment_ref', $payload->data->tx_ref)->first();
 
                     if (!$order) {
@@ -133,11 +137,14 @@ class OrderController extends Controller
                     }
 
                     $order->update([
-                        'status' => 'paid'
+                        'status' => 'paid',
+                        'amount' => $payload->data->amount
                     ]);
                 }
             }
 
+
+             // if it is a transfer event, verify and confirm it is a successful transfer
             if ($verified && $payload->event === 'transfer.completed') {
                 $transfer = Flutterwave::transfers()->fetch($payload->data->id);
 
