@@ -141,11 +141,14 @@ class OrderController extends Controller
                         ], 404);
                     }
 
+                    $order->status = "paid";
+                    $order->save();
+
                     
-                    $order->update([
-                        'amount' => $request->data['amount'],
-                        'status' => 'paid'
-                    ]);
+                    // $order->update([
+                    //     'amount' => $request->data['amount'],
+                    //     'status' => 'paid'
+                    // ]);
                         
                 }
             }
