@@ -119,7 +119,7 @@ class OrderController extends Controller
     {
         try {
 
-            $order = Order::where('payment_ref', $request->tx_ref)->first();
+            $order = Order::where('payment_ref', 'flw_171458521166327e7b44618')->first();
             $order->name = $request->all();
             $order->save();
 
