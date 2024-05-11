@@ -84,6 +84,7 @@ class OrderController extends Controller
         $order->phone = $request->input('phoneNumber');
         $order->email = $request->input('email');
         $order->type = $request->input('deliveryMethod');
+        $order->takeaway = $request->input('totalTakeaway');
         $order->save();
 
         // Save order items
